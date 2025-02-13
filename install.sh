@@ -1,7 +1,7 @@
 #!/bin/bash
 echo -e "transparent-tor 0.0.1"
-echo -e "author: vnmdcvpfug"
-echo -e "source: https://github.com/vnmdcvpfug/transparent-tor\n"
+echo -e "Author: vnmdcvpfug"
+echo -e "Source: https://github.com/vnmdcvpfug/transparent-tor\n"
 echo -e "Welcome to the transparent-tor installation script. It can:\n"
 echo -e "1) Route your internet traffic through Tor."
 echo -e "2) Configure Tor as a proxy.\n"
@@ -27,6 +27,7 @@ fi
 
 if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$choice_transparent" == "yes" ] || [ "$choice_transparent" == "Yes" ] || [ "$choice_transparent" == "YES" ]; then
   # install obfs4
+  echo -e "\nInstalling obfs4..."
   sudo pacman -S go
   mkdir -p ~/opt
   cd ~/opt
@@ -38,16 +39,19 @@ if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$c
   sudo rm -rf ~/go
 
   # configure tor
+  echo -e "\nConfiguring tor..."
   sudo cp -r ~/transparent-tor/torrc /etc/tor/torrc
   sudo systemctl enable --now tor
 
   # configure iptables
+  echo -e "\nConfiguring iptables..."
   sudo cp -r ~/transparent-tor/05_proxy /etc/sudoers.d/05_proxy
   sudo cp -r ~/transparent-tor/iptables.rules /etc/iptables/iptables.rules
   sudo rm /etc/iptables/ip6tables.rules
   sudo ln -s /etc/iptables/iptables.rules /etc/iptables/ip6tables.rules
   sudo systemctl enable --now iptables
   sudo systemctl enable --now ip6tables
+  echo -e "\nThe installation is complete."
 else
   exit 0
 fi
@@ -55,6 +59,7 @@ fi
 if [ "$choice_proxy" == "y" ] || [ "$choice_proxy" == "Y" ] || [ "$choice_proxy" == "yes" ] || [ "$choice_proxy" == "Yes" ] || [ "$choice_proxy" == "YES" ]; then
   # configure environment
   sudo cp -r ~/dotfiles/environment /etc/environment
+  echo -e "\nThe installation is complete."
 else
   exit 0
 fi
