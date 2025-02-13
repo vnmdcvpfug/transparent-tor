@@ -1,7 +1,7 @@
 <h3 align = "center">transparent-tor</h3>
 
 ### description
-This script automates the configuration of a transparent Tor setup. It also can configure Tor as a proxy.
+This script automates the configuration of a transparent Tor setup. It can also configure Tor as a proxy.
 
 ### installation
 ```bash
@@ -22,4 +22,4 @@ cd transparent-tor
 ```
 
 ### credits
-The code is mainly from the [ArchWiki Tor page](https://wiki.archlinux.org/title/Tor#Transparent_Torification).
+The code is mainly derived from the [ArchWiki Tor page](https://wiki.archlinux.org/title/Tor#Transparent_Torification).
