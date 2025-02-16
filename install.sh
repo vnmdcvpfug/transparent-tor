@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo -e "transparent-tor 0.1.1"
 echo -e "Author: vnmdcvpfug"
 echo -e "Source: https://github.com/vnmdcvpfug/transparent-tor\n"
