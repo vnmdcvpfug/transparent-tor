@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -e "transparent-tor 0.0.1"
+echo -e "transparent-tor 0.1.1"
 echo -e "Author: vnmdcvpfug"
 echo -e "Source: https://github.com/vnmdcvpfug/transparent-tor\n"
 echo -e "Welcome to the transparent-tor installation script. It can:\n"
@@ -36,7 +36,7 @@ if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$c
   go build -o obfs4proxy/obfs4proxy ./obfs4proxy
   sudo ln -s ./obfs4proxy/obfs4proxy /usr/bin/obfs4proxy
   sudo pacman -Rns go
-  sudo rm -rf ~/go
+  rm -rf ~/go
 
   # configure tor
   echo -e "\nConfiguring tor..."
