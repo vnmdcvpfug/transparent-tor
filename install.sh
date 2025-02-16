@@ -37,7 +37,7 @@ if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$c
   go build -o obfs4proxy/obfs4proxy ./obfs4proxy
   sudo cp -r ./obfs4proxy/obfs4proxy /usr/bin/obfs4proxy
   sudo pacman -Rns go
-  rm -fr ~/go
+  sudo rm -fr ~/go
 
   # configure tor
   echo -e "\nConfiguring tor..."
