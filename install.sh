@@ -25,21 +25,23 @@ else
   exit 0
 fi
 
-if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$choice_transparent" == "yes" ] || [ "$choice_transparent" == "Yes" ] || [ "$choice_transparent" == "YES" ]; then
+if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$choice_transparent" == "yes" ] || [ "$choice_transparent" == "Yes" ] || [ "$choice_transparent" == "YES" ] || [ "$choice_transparent" == "" ]; then
   # install obfs4
   echo -e "\nInstalling obfs4..."
   sudo pacman -S go
   mkdir -p ~/opt
   cd ~/opt
-  cd ~/opt/obfs4
   git clone https://github.com/Yawning/obfs4.git
+  cd ~/opt/obfs4
   go build -o obfs4proxy/obfs4proxy ./obfs4proxy
-  sudo ln -s ./obfs4proxy/obfs4proxy /usr/bin/obfs4proxy
+  sudo cp -r ./obfs4proxy/obfs4proxy /usr/bin/obfs4proxy
   sudo pacman -Rns go
-  rm -rf ~/go
+  rm -fr ~/go
 
   # configure tor
   echo -e "\nConfiguring tor..."
+  cd ~/transparent-tor
+  sudo pacman -S tor
   sudo cp -r ~/transparent-tor/torrc /etc/tor/torrc
   sudo systemctl enable --now tor
 
@@ -56,7 +58,7 @@ else
   exit 0
 fi
 
-if [ "$choice_proxy" == "y" ] || [ "$choice_proxy" == "Y" ] || [ "$choice_proxy" == "yes" ] || [ "$choice_proxy" == "Yes" ] || [ "$choice_proxy" == "YES" ]; then
+if [ "$choice_proxy" == "y" ] || [ "$choice_proxy" == "Y" ] || [ "$choice_proxy" == "yes" ] || [ "$choice_proxy" == "Yes" ] || [ "$choice_proxy" == "YES" ] || [ "$choice_proxy" == ""]; then
   # configure environment
   sudo cp -r ~/dotfiles/environment /etc/environment
   echo -e "\nThe installation is complete."
