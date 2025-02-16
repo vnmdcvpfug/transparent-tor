@@ -54,6 +54,7 @@ if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$c
   sudo ln -s /etc/iptables/iptables.rules /etc/iptables/ip6tables.rules
   sudo systemctl enable --now iptables
   sudo systemctl enable --now ip6tables
+  sudo systemctl restart tor
   echo -e "\nThe installation is complete."
 else
   exit 0
