@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo -e "transparent-tor 0.1.1"
+echo -e "transparent-tor 0.2.0"
 echo -e "Author: vnmdcvpfug"
 echo -e "Source: https://github.com/vnmdcvpfug/transparent-tor\n"
 echo -e "Welcome to the transparent-tor installation script. It can:\n"
