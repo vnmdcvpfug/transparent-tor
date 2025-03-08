@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo -e "transparent-tor 0.2.0"
+echo -e "transparent-tor 0.2.1"
 echo -e "Author: vnmdcvpfug"
 echo -e "Source: https://github.com/vnmdcvpfug/transparent-tor\n"
 echo -e "Welcome to the transparent-tor installation script. It can:\n"
@@ -55,6 +55,16 @@ if [ "$choice_transparent" == "y" ] || [ "$choice_transparent" == "Y" ] || [ "$c
   sudo systemctl enable --now iptables
   sudo systemctl enable --now ip6tables
   sudo systemctl restart tor
+  
+  # configure DNS resolver
+  echo -e "\nConfiguring DNS resolver..."
+  sudo echo -e "[main]\ndns=systemd-resolved" | sudo tee /etc/NetworkManager/conf.d/dns.conf > /dev/null
+  sudo mkdir -p /etc/systemd/resolved.conf.d
+  sudo echo -e "[Resolve]\nDNS=127.0.0.1\nDomains=~." | sudo tee /etc/systemd/resolved.conf.d/dns_servers.conf > /dev/null
+  sudo systemctl enable --now systemd-resolved
+  sudo systemctl restart NetworkManager
+  
+  # the installation is complete
   echo -e "\nThe installation is complete."
 else
   exit 0
